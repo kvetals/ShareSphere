@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.insart.traineeprogram.model.Role" table="roles">
+        <id name="roleId" column="role_id">
+            <generator class="native" />
+        </id>
+        <property name="roleCaption" column="role_caption"/>
+        <set name="userSet" inverse="true">
+            <key column="role_id"/>
+            <one-to-many class="com.insart.traineeprogram.model.User"/>
+        </set>
+    </class>
+</hibernate-mapping>

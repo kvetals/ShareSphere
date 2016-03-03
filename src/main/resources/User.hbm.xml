@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 25 April 2011 7:52:33 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.insart.traineeprogram.model.User" table="users">
+        <id name="userId" column="user_id">
+            <generator class="native" />
+        </id>
+        <property name="userLogin" column="user_login" not-null="true" />
+        <property name="userPassword" column="user_password" not-null="true" />
+        <property name="userEmail" column="user_email" not-null="true" />
+        <many-to-one name="role" class = "com.insart.traineeprogram.model.Role" column="role_id" not-null="true"/>
+    </class>
+</hibernate-mapping>
