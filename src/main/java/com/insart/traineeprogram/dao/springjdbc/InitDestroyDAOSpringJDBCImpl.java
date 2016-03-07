@@ -1,9 +1,11 @@
-package com.insart.traineeprogram.dao;
+package com.insart.traineeprogram.dao.springjdbc;
 
 import java.util.ResourceBundle;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
+
+import com.insart.traineeprogram.dao.InitDestroyDAO;
 
 public class InitDestroyDAOSpringJDBCImpl extends JdbcDaoSupport implements InitDestroyDAO {
 	

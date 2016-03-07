@@ -1,18 +1,18 @@
 package com.insart.traineeprogram;
 
 import com.insart.traineeprogram.dao.FileSystemObjectsDAO;
-import com.insart.traineeprogram.dao.FileSystemObjectsDAOImpl;
 import com.insart.traineeprogram.dao.InitDestroyDAO;
-import com.insart.traineeprogram.dao.InitDestroyDAOImpl;
-import com.insart.traineeprogram.dao.InitDestroyDAOSpringJDBCImpl;
 import com.insart.traineeprogram.dao.PrivilegesDAO;
-import com.insart.traineeprogram.dao.PrivilegesDAOSpringJDBCImpl;
 import com.insart.traineeprogram.dao.RolesDAO;
-import com.insart.traineeprogram.dao.RolesDAOHibernateImpl;
-import com.insart.traineeprogram.dao.RolesDAOSpringJDBCImpl;
 import com.insart.traineeprogram.dao.UsersDAO;
-import com.insart.traineeprogram.dao.UsersDAOHibernateImpl;
-import com.insart.traineeprogram.dao.UsersDAOSpringJDBCImpl;
+import com.insart.traineeprogram.dao.hibernate.RolesDAOHibernateImpl;
+import com.insart.traineeprogram.dao.hibernate.UsersDAOHibernateImpl;
+import com.insart.traineeprogram.dao.jdbc.FileSystemObjectsDAOImpl;
+import com.insart.traineeprogram.dao.jdbc.InitDestroyDAOImpl;
+import com.insart.traineeprogram.dao.springjdbc.InitDestroyDAOSpringJDBCImpl;
+import com.insart.traineeprogram.dao.springjdbc.PrivilegesDAOSpringJDBCImpl;
+import com.insart.traineeprogram.dao.springjdbc.RolesDAOSpringJDBCImpl;
+import com.insart.traineeprogram.dao.springjdbc.UsersDAOSpringJDBCImpl;
 import com.insart.traineeprogram.model.Role;
 import com.insart.traineeprogram.model.User;
 import com.insart.traineeprogram.service.UserService;

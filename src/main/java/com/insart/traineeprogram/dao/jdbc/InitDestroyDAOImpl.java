@@ -1,5 +1,6 @@
-package com.insart.traineeprogram.dao;
+package com.insart.traineeprogram.dao.jdbc;
 
+import com.insart.traineeprogram.dao.InitDestroyDAO;
 import com.insart.traineeprogram.utils.MyDbConnection;
 
 import java.sql.Statement;

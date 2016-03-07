@@ -2,7 +2,7 @@
 	var totalCount = 7;
 	var style = document.getElementsByTagName('body')[0].style;
 	var num = Math.ceil( Math.random() * totalCount ); 
-	style.background = "fixed url('img/backgrounds/bg"+num+".jpg') no-repeat top center";
+	style.background = "fixed url('resources/img/backgrounds/bg"+num+".jpg') no-repeat top center";
 	style.backgroundSize = "cover";
 })();
 function changeForm(){

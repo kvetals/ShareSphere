@@ -6,6 +6,14 @@ public class RoleService {
 	
 	private RolesDAO rolesDAO;
 	
+	public RolesDAO getRolesDAO() {
+		return rolesDAO;
+	}
+
+	public void setRolesDAO(RolesDAO rolesDAO) {
+		this.rolesDAO = rolesDAO;
+	}
+
 	public boolean addNewRole(String caption){
 		boolean result = false;
 		if (!rolesDAO.isCaptionExists(caption.toLowerCase())){

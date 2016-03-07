@@ -1,4 +1,4 @@
-package com.insart.traineeprogram.dao;
+package com.insart.traineeprogram.dao.hibernate;
 
 import java.util.List;
 
@@ -6,6 +6,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
+import com.insart.traineeprogram.dao.RolesDAO;
 import com.insart.traineeprogram.model.Role;
 import com.insart.traineeprogram.utils.DaoHibernateUtils;
 

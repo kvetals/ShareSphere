@@ -1,5 +1,6 @@
-package com.insart.traineeprogram.dao;
+package com.insart.traineeprogram.dao.jdbc;
 
+import com.insart.traineeprogram.dao.UsersDAO;
 import com.insart.traineeprogram.model.User;
 import com.insart.traineeprogram.utils.MyDbConnection;
 
@@ -37,6 +38,15 @@ public class UsersDAOImpl implements UsersDAO {
         try (Connection connection = MyDbConnection.getConnection()) {
             executePreparedStatement(connection, DELETE_USER_BY_ID, ""+id);
         }catch (SQLException e){/*IGNORE*/}
+    }
+    
+    public User getUserByLogin(String userLogin) {
+        User user = null;
+        try (Connection connection = MyDbConnection.getConnection()) {
+            ResultSet resultSet = executeQueryPreparedStatement(connection, GET_USER_BY_LOGIN, userLogin);
+            user = parseResultSet(resultSet, User.class);
+        }catch (SQLException e){/*IGNORE*/}
+        return user;
     }
 
     public void deleteUserByLogin(String login) {

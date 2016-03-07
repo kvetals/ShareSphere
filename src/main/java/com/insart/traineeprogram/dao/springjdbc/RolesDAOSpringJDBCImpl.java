@@ -1,4 +1,4 @@
-package com.insart.traineeprogram.dao;
+package com.insart.traineeprogram.dao.springjdbc;
 
 import java.util.List;
 
@@ -6,6 +6,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 
+import com.insart.traineeprogram.dao.RolesDAO;
 import com.insart.traineeprogram.model.Role;
 
 public class RolesDAOSpringJDBCImpl extends JdbcDaoSupport implements RolesDAO {

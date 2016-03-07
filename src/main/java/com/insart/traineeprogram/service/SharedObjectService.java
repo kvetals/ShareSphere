@@ -7,6 +7,14 @@ public class SharedObjectService {
 	
 	private SharedObjectsDAO sharedObjectsDAO;
 	
+	public SharedObjectsDAO getSharedObjectsDAO() {
+		return sharedObjectsDAO;
+	}
+
+	public void setSharedObjectsDAO(SharedObjectsDAO sharedObjectsDAO) {
+		this.sharedObjectsDAO = sharedObjectsDAO;
+	}
+
 	public boolean addNewSharedObject(Integer fsObjectId, Integer userId, Integer privilegeId){
 		boolean result = false;
 		if (!sharedObjectsDAO.isObjectSharedToUser(fsObjectId, userId)){

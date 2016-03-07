@@ -1,5 +1,6 @@
-package com.insart.traineeprogram.dao;
+package com.insart.traineeprogram.dao.jdbc;
 
+import com.insart.traineeprogram.dao.SharedObjectsDAO;
 import com.insart.traineeprogram.model.SharedObject;
 import com.insart.traineeprogram.utils.MyDbConnection;
 import org.apache.logging.log4j.LogManager;

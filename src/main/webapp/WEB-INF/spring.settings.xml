@@ -10,9 +10,11 @@
         http://www.springframework.org/schema/context 
         http://www.springframework.org/schema/context/spring-context-4.2.xsd">
 
-	<!-- <mvc:annotation-driven /> -->
+	
 	<context:annotation-config/>
-	<context:component-scan base-package="com.insart.traineeprogram"></context:component-scan>
+	<context:component-scan base-package="com.insart.traineeprogram.controller"></context:component-scan>
+	<mvc:annotation-driven />
+	<mvc:resources mapping="/resources/**" location="/resources/" />
 	
 
 	<!-- Datasource (MySQL) -->
@@ -27,40 +29,40 @@
 	<!-- Definition for items dao (jdbc template) -->
 	
 	<!-- SpringJDBC DAO implementations -->
-	<bean id="usersDAOSpringJDBC" class="com.insart.traineeprogram.dao.UsersDAOSpringJDBCImpl">
+	<bean id="usersDAOSpringJDBC" class="com.insart.traineeprogram.dao.springjdbc.UsersDAOSpringJDBCImpl">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
-	<bean id="rolesDAOSpringJDBC" class="com.insart.traineeprogram.dao.RolesDAOSpringJDBCImpl">
+	<bean id="rolesDAOSpringJDBC" class="com.insart.traineeprogram.dao.springjdbc.RolesDAOSpringJDBCImpl">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
-	<bean id="privilegesDAOSpringJDBC" class="com.insart.traineeprogram.dao.PrivilegesDAOSpringJDBCImpl">
+	<bean id="privilegesDAOSpringJDBC" class="com.insart.traineeprogram.dao.springjdbc.PrivilegesDAOSpringJDBCImpl">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
-	<bean id="objectTypesDAOSpringJDBC" class="com.insart.traineeprogram.dao.ObjectTypesDAOSpringJDBCImpl">
+	<bean id="objectTypesDAOSpringJDBC" class="com.insart.traineeprogram.dao.springjdbc.ObjectTypesDAOSpringJDBCImpl">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
-	<bean id="fileSystemObjectsDAOSpringJDBC" class="com.insart.traineeprogram.dao.FileSystemObjectsDAOSpringJDBCImpl">
+	<bean id="fileSystemObjectsDAOSpringJDBC" class="com.insart.traineeprogram.dao.springjdbc.FileSystemObjectsDAOSpringJDBCImpl">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
-	<bean id="sharedObjectsDAOSpringJDBC" class="com.insart.traineeprogram.dao.SharedObjectsDAOSpringJDBCImpl">
+	<bean id="sharedObjectsDAOSpringJDBC" class="com.insart.traineeprogram.dao.springjdbc.SharedObjectsDAOSpringJDBCImpl">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
-	<bean id="initDestroyDAOSpringJDBC" class="com.insart.traineeprogram.dao.InitDestroyDAOSpringJDBCImpl">
+	<bean id="initDestroyDAOSpringJDBC" class="com.insart.traineeprogram.dao.springjdbc.InitDestroyDAOSpringJDBCImpl">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
 	<!-- Usual JDBC DAO implementation -->
-	<bean id="usersDAOJDBC" class="com.insart.traineeprogram.dao.UsersDAOImpl"/>
-	<bean id="rolesDAOJDBC" class="com.insart.traineeprogram.dao.RolesDAOImpl"/>
-	<bean id="privilegesDAOJDBC" class="com.insart.traineeprogram.dao.PrivilegesDAOImpl"/>
-	<bean id="objectTypesDAOJDBC" class="com.insart.traineeprogram.dao.ObjectTypesDAOImpl"/>
-	<bean id="fileSystemObjectsDAOJDBC" class="com.insart.traineeprogram.dao.FileSystemObjectsDAOImpl"/>
-	<bean id="sharedObjectsDAOJDBC" class="com.insart.traineeprogram.dao.SharedObjectsDAOImpl"/>
-	<bean id="initDestroyDAOJDBC" class="com.insart.traineeprogram.dao.InitDestroyDAOImpl"/>
+	<bean id="usersDAOJDBC" class="com.insart.traineeprogram.dao.jdbc.UsersDAOImpl"/>
+	<bean id="rolesDAOJDBC" class="com.insart.traineeprogram.dao.jdbc.RolesDAOImpl"/>
+	<bean id="privilegesDAOJDBC" class="com.insart.traineeprogram.dao.jdbc.PrivilegesDAOImpl"/>
+	<bean id="objectTypesDAOJDBC" class="com.insart.traineeprogram.dao.jdbc.ObjectTypesDAOImpl"/>
+	<bean id="fileSystemObjectsDAOJDBC" class="com.insart.traineeprogram.dao.jdbc.FileSystemObjectsDAOImpl"/>
+	<bean id="sharedObjectsDAOJDBC" class="com.insart.traineeprogram.dao.jdbc.SharedObjectsDAOImpl"/>
+	<bean id="initDestroyDAOJDBC" class="com.insart.traineeprogram.dao.jdbc.InitDestroyDAOImpl"/>
 	
 	<!-- Hibernate DAO implementation -->
-	<bean id="usersDAOHibernate" class="com.insart.traineeprogram.dao.UsersDAOHibernateImpl"/>
-	<bean id="rolesDAOHibernate" class="com.insart.traineeprogram.dao.RolesDAOHibernateImpl"/>
+	<bean id="usersDAOHibernate" class="com.insart.traineeprogram.dao.hibernate.UsersDAOHibernateImpl"/>
+	<bean id="rolesDAOHibernate" class="com.insart.traineeprogram.dao.hibernate.RolesDAOHibernateImpl"/>
 	
 	<!-- Service BEANS usage -->
 	<bean id="userService" class="com.insart.traineeprogram.service.UserService">
@@ -78,17 +80,20 @@
 	<bean id="sharedObjectService" class="com.insart.traineeprogram.service.SharedObjectService">
 		<property name="sharedObjectsDAO" ref="sharedObjectsDAOSpringJDBC"/>
 	</bean>
+	<bean id="fileSystemObjectService" class="com.insart.traineeprogram.service.FileSystemObjectService">
+		<property name="fileSystemObjectsDAO" ref="fileSystemObjectsDAOSpringJDBC"/>
+	</bean>
 
 	<!-- View resolver config -->
-	<!-- <bean
+	 <bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix">
-			<value>/views/</value>
+			<value>/</value>
 		</property>
 		<property name="suffix">
 			<value>.jsp</value>
 		</property>
-	</bean>-->
+	</bean>
 
 	<!-- <bean id="localeResolver"
 		class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
@@ -110,6 +115,6 @@
 		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 		<property name="basename" value="/WEB-INF/i18n/messages" />
 		<property name="defaultEncoding" value="UTF-8" />
-	</bean>
-	<mvc:resources mapping="/resources/**" location="/resources/" />-->
+	</bean>-->
+	
 </beans>

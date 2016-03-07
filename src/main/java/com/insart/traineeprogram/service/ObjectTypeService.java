@@ -6,6 +6,14 @@ public class ObjectTypeService {
 	
 	ObjectTypesDAO objectTypesDAO;
 	
+	public ObjectTypesDAO getObjectTypesDAO() {
+		return objectTypesDAO;
+	}
+
+	public void setObjectTypesDAO(ObjectTypesDAO objectTypesDAO) {
+		this.objectTypesDAO = objectTypesDAO;
+	}
+
 	public boolean addNewObjectType(String caption){
 		boolean result = false;
 		if (!objectTypesDAO.isCaptionExists(caption.toLowerCase())){

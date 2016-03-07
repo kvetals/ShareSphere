@@ -12,11 +12,18 @@ import javax.servlet.http.HttpServletResponse;
  * Created by v.kovtun on 14.02.2016.
  */
 public class UserService {
+	
 	private UsersDAO usersDAO;
 
 	public void setUsersDAO(UsersDAO usersDAO) {
 		this.usersDAO = usersDAO;
 	}
+
+	public UsersDAO getUsersDAO() {
+		return usersDAO;
+	}
+
+
 
 	public boolean registerNewUser(String userLogin, String userPassword, String userEmail, Integer roleId){
         boolean result = false;
@@ -46,7 +53,11 @@ public class UserService {
         usersDAO.changePasswordByUserId(newPassword, userId);
     }
     
-    public void logout(HttpServletRequest request, HttpServletResponse response){
+    public void logout(HttpServletRequest request){
     	request.getSession().invalidate();
+    }
+    
+    public Integer getUserIdByUserLogin(String userLogin){
+    	return usersDAO.getUserByLogin(userLogin).getUserId();
     }
 }

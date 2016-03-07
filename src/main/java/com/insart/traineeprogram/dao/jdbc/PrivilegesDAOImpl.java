@@ -1,5 +1,6 @@
-package com.insart.traineeprogram.dao;
+package com.insart.traineeprogram.dao.jdbc;
 
+import com.insart.traineeprogram.dao.PrivilegesDAO;
 import com.insart.traineeprogram.model.Privilege;
 import com.insart.traineeprogram.utils.MyDbConnection;
 

@@ -57,6 +57,24 @@ a:hover{
 	border-radius: 3px;
 	background: rgba(255,255,255,0.85);
 }
+.b-login-form__error-message{
+	position: absolute;
+	right: 0;
+	bottom: 10px;
+	width: 150px;
+	height: 50px;
+	font-size: 12px;
+	color: red;
+}
+.b-register-form__error-message{
+	position: absolute;
+	right: 0;
+	bottom: 10px;
+	width: 130px;
+	height: 50px;
+	font-size: 12px;
+	color: red;
+}
 .b-register-form{
 	display: none;
 	position: absolute;

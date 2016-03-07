@@ -3,8 +3,16 @@ package com.insart.traineeprogram.service;
 import com.insart.traineeprogram.dao.PrivilegesDAO;
 
 public class PrivilegeService {
-private PrivilegesDAO privilegesDAO;
+	private PrivilegesDAO privilegesDAO;
 	
+	public PrivilegesDAO getPrivilegesDAO() {
+		return privilegesDAO;
+	}
+
+	public void setPrivilegesDAO(PrivilegesDAO privilegesDAO) {
+		this.privilegesDAO = privilegesDAO;
+	}
+
 	public boolean addNewPrivilege(String caption){
 		boolean result = false;
 		if (!privilegesDAO.isCaptionExists(caption.toLowerCase())){

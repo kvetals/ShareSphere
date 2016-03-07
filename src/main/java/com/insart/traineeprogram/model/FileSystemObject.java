@@ -10,6 +10,7 @@ public class FileSystemObject {
     private Integer userId;
     private String fsObjectPath;
     private String fsObjectDlLink;
+    private Integer parentFsObjectId;
 
     public Integer getFsObjectId() {
         return fsObjectId;
@@ -59,7 +60,15 @@ public class FileSystemObject {
         this.fsObjectDlLink = fsObjectDlLink;
     }
 
-    @Override
+    public Integer getParentFsObjectId() {
+		return parentFsObjectId;
+	}
+
+	public void setParentFsObjectId(Integer parentFsObjectId) {
+		this.parentFsObjectId = parentFsObjectId;
+	}
+
+	@Override
     public String toString() {
         return getFsObjectId()+ " " + getFsObjectName()+ " " + getObjectTypeId() + " " + getUserId() + " " + getFsObjectPath() + " " + getFsObjectDlLink();
     }

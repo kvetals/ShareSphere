@@ -34,6 +34,8 @@ public interface UsersDAO {
     public  List<User> getAllUsers();
 
     public User getUserById(int index);
+    
+    public User getUserByLogin(String userLogin);
 
     public User getUserByEmail(String email);
 

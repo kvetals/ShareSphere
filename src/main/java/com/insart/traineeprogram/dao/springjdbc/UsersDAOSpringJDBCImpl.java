@@ -1,4 +1,4 @@
-package com.insart.traineeprogram.dao;
+package com.insart.traineeprogram.dao.springjdbc;
 
 import java.util.List;
 
@@ -6,6 +6,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 
+import com.insart.traineeprogram.dao.UsersDAO;
 import com.insart.traineeprogram.model.User;
 //import com.insart.traineeprogram.utils.UserRowMapper;
 
@@ -30,6 +31,15 @@ public class UsersDAOSpringJDBCImpl extends JdbcDaoSupport implements UsersDAO {
 	public User getUserById(int index) {
 		try{
 			return getJdbcTemplate().queryForObject(GET_USER_BY_ID, new Object[]{index}, new BeanPropertyRowMapper<User>(User.class)); //UserRowMapper());
+		}catch(EmptyResultDataAccessException e){
+			return null;
+		}
+	}
+	
+	@Override
+	public User getUserByLogin(String userLogin) {
+		try{
+			return getJdbcTemplate().queryForObject(GET_USER_BY_LOGIN, new Object[]{userLogin}, new BeanPropertyRowMapper<User>(User.class));
 		}catch(EmptyResultDataAccessException e){
 			return null;
 		}

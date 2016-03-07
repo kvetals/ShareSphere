@@ -1,5 +1,6 @@
-package com.insart.traineeprogram.dao;
+package com.insart.traineeprogram.dao.jdbc;
 
+import com.insart.traineeprogram.dao.FileSystemObjectsDAO;
 import com.insart.traineeprogram.model.FileSystemObject;
 import com.insart.traineeprogram.utils.MyDbConnection;
 
@@ -8,6 +9,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 
 import static com.insart.traineeprogram.utils.DaoUtils.*;
 
@@ -59,6 +63,24 @@ public class FileSystemObjectsDAOImpl implements FileSystemObjectsDAO {
         }catch (SQLException e){/*IGNORE*/}
         return  fsObjectList;
     }
+    
+    public List<FileSystemObject> getRootFsObjectsByUserId(Integer userId){
+    	List<FileSystemObject> fsObjectList = new ArrayList<>();
+        try (Connection connection = MyDbConnection.getConnection()) {
+            ResultSet resultSet = executeQueryPreparedStatement(connection, GET_ROOT_FS_OBJECTS_BY_USER_ID, "" + userId);
+            fsObjectList = parseResultSet(resultSet, fsObjectList, FileSystemObject.class);
+        }catch (SQLException e){/*IGNORE*/}
+        return fsObjectList;
+    }
+    
+    public List<FileSystemObject> getFsObjectsChildrenByParentId(Integer parentFsObjectId) {
+        List<FileSystemObject> fsObjectList = new ArrayList<>();
+        try (Connection connection = MyDbConnection.getConnection()) {
+            ResultSet resultSet = executeQueryPreparedStatement(connection, GET_FS_OBJECTS_CHILDREN_BY_PARENT_ID, "" + parentFsObjectId);
+            fsObjectList = parseResultSet(resultSet, fsObjectList, FileSystemObject.class);
+        }catch (SQLException e){/*IGNORE*/}
+        return fsObjectList;
+    }
 
     public List<FileSystemObject> getAllLinkedFsObjectsByUserId(Integer userId){
         List<FileSystemObject> list = new ArrayList<>();
@@ -92,4 +114,20 @@ public class FileSystemObjectsDAOImpl implements FileSystemObjectsDAO {
             executePreparedStatement(connection, DELETE_FS_OBJECT_BY_PATH, caption);
         }catch (SQLException e){/*IGNORE*/}
     }
+
+	@Override
+	public List<FileSystemObject> getFsObjectSiblings(Integer userId, Integer fsObjectId) {
+		List<FileSystemObject> list = null;
+		FileSystemObject fsObject = getFsObjectById(fsObjectId);
+		if (fsObject.getParentFsObjectId() != null){
+			try (Connection connection = MyDbConnection.getConnection()) {
+	            ResultSet resultSet = executeQueryPreparedStatement(connection, GET_FS_OBJECT_SIBLINGS_BY_USER_ID_AND_PARENT_FS_OBJECT_ID, "" + userId, "" + fsObjectId);
+	            list = parseResultSet(resultSet, list, FileSystemObject.class);
+	        }catch (SQLException e){/*IGNORE*/}
+	        return  list;
+		}else{
+			return getRootFsObjectsByUserId(userId);
+		}
+		
+	}
 }

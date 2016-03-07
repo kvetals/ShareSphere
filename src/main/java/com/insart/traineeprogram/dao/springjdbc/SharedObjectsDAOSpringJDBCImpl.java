@@ -1,18 +1,13 @@
-package com.insart.traineeprogram.dao;
+package com.insart.traineeprogram.dao.springjdbc;
 
-import static com.insart.traineeprogram.utils.DaoUtils.executeQueryPreparedStatement;
-import static com.insart.traineeprogram.utils.DaoUtils.parseResultSet;
-
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.util.List;
 
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 
+import com.insart.traineeprogram.dao.SharedObjectsDAO;
 import com.insart.traineeprogram.model.SharedObject;
-import com.insart.traineeprogram.utils.MyDbConnection;
 
 public class SharedObjectsDAOSpringJDBCImpl extends JdbcDaoSupport implements SharedObjectsDAO {
 	
